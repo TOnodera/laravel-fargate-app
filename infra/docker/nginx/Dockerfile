@@ -21,7 +21,5 @@ COPY ./infra/docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
+RUN chown -R nginx:nginx /work/backend
 
-RUN addgroup -S dev \
-  && adduser -S dev -G dev
-USER dev
