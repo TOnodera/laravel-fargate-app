@@ -35,4 +35,3 @@ WORKDIR /work/backend
 
 # 開発用ユーザー(www-dataと同じuid)
 RUN useradd -ms /bin/bash -ou 33 dev
-USER dev 
