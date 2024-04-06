@@ -22,5 +22,6 @@ COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
 
-USER nginx
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+RUN addgroup -S dev \
+  && adduser -S dev -G dev
+USER dev
