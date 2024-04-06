@@ -21,3 +21,6 @@ COPY ./infra/docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
+
+USER nginx
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
