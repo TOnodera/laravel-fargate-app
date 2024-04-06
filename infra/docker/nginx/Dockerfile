@@ -21,6 +21,8 @@ COPY ./infra/docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
-RUN chown -R nginx:nginx /work/backend \
-   && chown -R nginx:nginx /var/cache/nginx/.npm
+RUN chown -R nginx:nginx /work/backend
+RUN mkdir -p /var/cache/nginx/.npm \
+  && chown -R nginx:nginx /var/cache/nginx/.npm
+
 
