@@ -44,6 +44,7 @@ jobs:
           path: backend/vendor
           key: composer-v1-${{ hashFiles('backend/composer.lock') }}
         
+      - run: docker-compose ps 
       - run: docker-compose exec -T app ls -al 
         # phpパッケージのインストール
       - run: docker-compose exec -T app composer install -n --prefer-dist --no-dev
