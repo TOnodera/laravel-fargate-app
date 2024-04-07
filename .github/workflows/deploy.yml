@@ -35,8 +35,8 @@ jobs:
         
         # コンテナ起動
       - run: |
-        docker-compose up -d --build app web
-        docker-compose exec -T web chown -R www:www /work/backend
+          docker-compose up -d --build app web
+          docker-compose exec -T web chown -R www:www /work/backend
         
         # キャッシュ設定
       - name: Cache composer
