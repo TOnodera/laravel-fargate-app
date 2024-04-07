@@ -58,15 +58,11 @@ jobs:
           path: backend/node_modules
           key: npm-v1-${{ hashFiles('backend/package-lock.json') }}
       
-      - run: docker-compose exec -T web npm ci
+      - run: docker-compose exec --user=www -T web npm ci
         if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
         
         # npm build
-      - run: |
-          npm config set user 0
-          npm config set unsafe-perm true
-          docker-compose exec -T web npm run prod
-
+      - run: docker-compose exec  --user=www -T web npm run prod
 
         # ecrログイン
       - uses: aws-actions/amazon-ecr-login@v1

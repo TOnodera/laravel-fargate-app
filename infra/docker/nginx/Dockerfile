@@ -22,5 +22,4 @@ COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
 
-# TODO 安全ではないので非ルートにするように切り替える
-RUN npm config -g set user 0 && npm config -g set unsafe-perm true
+RUN addgroup -g 1000 www && adduser www -G www -D
