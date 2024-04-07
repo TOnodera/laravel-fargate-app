@@ -58,7 +58,7 @@ jobs:
           path: backend/node_modules
           key: npm-v1-${{ hashFiles('backend/package-lock.json') }}
       
-      - run: docker-compose exec --user=nginx -T web npm ci
+      - run: docker-compose exec --user=www -T web npm ci
         if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
         
         # npm build
