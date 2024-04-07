@@ -22,4 +22,5 @@ COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
 
-RUN addgroup -g 1000 www && adduser www -G www -D
+RUN addgroup -g 1000 www && adduser www -G www -D \
+  chown -R www:www /work/backend
