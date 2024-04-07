@@ -1,4 +1,4 @@
-FROM node:20-alpine as node
+FROM node:16-alpine as node
 FROM nginx:1.20-alpine
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
@@ -22,3 +22,5 @@ COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
 
+# TODO 安全ではないので非ルートにするように切り替える
+RUN npm config -g set user 0 && npm config -g set unsafe-perm true
