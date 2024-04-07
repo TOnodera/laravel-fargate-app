@@ -1,4 +1,4 @@
-FROM node:20-alpine as node
+FROM node:16-alpine as node
 FROM nginx:1.20-alpine
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
@@ -21,12 +21,4 @@ COPY ./infra/docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./backend/public /work/backend/public
 
 WORKDIR /work/backend
-
-RUN addgroup -S www \
-    && adduser -S www -G www \
-    && echo "www ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
-    && echo 'www:www' | chpasswd
-    
-RUN chown -R www:www /work/backend
-    
 
