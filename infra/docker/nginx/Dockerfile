@@ -23,10 +23,10 @@ COPY ./backend/public /work/backend/public
 WORKDIR /work/backend
 
 RUN addgroup -S www \
-    && adduser -S www -G www -u 101\
+    && adduser -S www -G www \
     && echo "www ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && echo 'www:www' | chpasswd
     
-RUN chown -R 101:101 /work/backend
+RUN chown -R www:www /work/backend
     
 
