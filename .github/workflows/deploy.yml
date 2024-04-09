@@ -38,27 +38,27 @@ jobs:
           docker-compose exec -T web chown -R www:www /work/backend
         
         # キャッシュ設定
-      - name: Cache composer
-        id: cache-composer
-        uses: actions/cache@v2
-        with:
-          path: backend/vendor
-          key: composer-v1-${{ hashFiles('backend/composer.lock') }}
+      # - name: Cache composer
+      #   id: cache-composer
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: backend/vendor
+      #     key: composer-v1-${{ hashFiles('backend/composer.lock') }}
         
         # phpパッケージのインストール
       - run: docker-compose exec -T app composer install -n --prefer-dist --no-dev
-        if: ${{ !steps.cache-composer.outputs.cache-hit }}
+        # if: ${{ !steps.cache-composer.outputs.cache-hit }}
         
         # npmキャッシュ
-      - name: Cache npm
-        id: cache-npm-ci
-        uses: actions/cache@v2
-        with:
-          path: backend/node_modules
-          key: npm-v1-${{ hashFiles('backend/package-lock.json') }}
+      # - name: Cache npm
+      #   id: cache-npm-ci
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: backend/node_modules
+      #     key: npm-v1-${{ hashFiles('backend/package-lock.json') }}
       
       - run: docker-compose exec --user=www -T web npm ci
-        if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
+        # if: ${{ !steps.cache-npm-ci.outputs.cache-hit }}
         
         # npm build
       - run: docker-compose exec  --user=www -T web npm run prod
